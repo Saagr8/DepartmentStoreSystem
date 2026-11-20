@@ -1,0 +1,10 @@
+# NetBeans generated files
+/build/
+/dist/
+/nbproject/private/
+
+# Compiled Java files
+*.class
+
+# Temporary files
+*.log
