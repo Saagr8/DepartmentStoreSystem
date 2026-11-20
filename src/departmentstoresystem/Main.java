@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package departmentstoresystem;
+import java.util.Scanner;
 
 /**
  *
@@ -14,14 +15,75 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-          // Create our EmployeeManager object
+          // Create EmployeeManager
         EmployeeManager manager = new EmployeeManager();
 
-        // Read employee information from the file
+        // Load employee records
         manager.loadEmployees();
+        // Create Scanner to read user input
+Scanner input = new Scanner(System.in);
 
-        // Display all employees
-        manager.displayEmployees();
+// Control whether the menu should keep running
+boolean running = true;
+
+while (running) {
+
+        // Display main menu
+        System.out.println();
+        System.out.println("DEPARTMENT STORE EMPLOYEE SYSTEM");
+        System.out.println("--------------------------------");
+
+        // Display all options from our Enum
+        for (MenuOption option : MenuOption.values()) {
+
+            System.out.println(option.getNumber()
+                    + ". " + option.getDescription());
     }
+        
+        // Read the user's menu choice
+
+        System.out.print("Enter your choice: ");
+
+        // Check if the user entered a number
+        if (input.hasNextInt()) {
+
+            int choice = input.nextInt();
+            input.nextLine();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.println("SORT selected");
+                    break;
+
+                case 2:
+                    System.out.println("SEARCH selected");
+                    break;
+
+                case 3:
+                    System.out.println("ADD RECORDS selected");
+                    break;
+
+                case 4:
+                    System.out.println("BINARY TREE selected");
+                    break;
+
+                case 5:
+                    System.out.println("Goodbye!");
+                      running = false;
+                      break;
+               
+
+                default:
+                    System.out.println("Invalid option!");
+            }
+
+        } else {
+    System.out.println("Please enter a number!");
+    input.nextLine();
+}
+
     
+  }
+}
 }
