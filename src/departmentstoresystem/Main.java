@@ -14,20 +14,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // Create our first employee
-        Employee emp1 = new Employee(
-                "Benjamin Hill", "Head Manager", "Operations");
+          // Create our EmployeeManager object
+        EmployeeManager manager = new EmployeeManager();
 
-        // Create our second employee
-        Employee emp2 = new Employee(
-                "John Smith", "Senior Manager", "Finance");
+        // Read employee information from the file
+        manager.loadEmployees();
 
-        // Display employee information
-        System.out.println("Department Store Employees");
-        System.out.println("--------------------------");
-
-        System.out.println(emp1);
-        System.out.println(emp2);
+        // Display all employees
+        manager.displayEmployees();
     }
     
 }
