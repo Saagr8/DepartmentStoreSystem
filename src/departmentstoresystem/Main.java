@@ -54,6 +54,7 @@ while (running) {
 
                 case 1:
                     System.out.println("SORT selected");
+                    manager.sortEmployees();
                     break;
 
                 case 2:

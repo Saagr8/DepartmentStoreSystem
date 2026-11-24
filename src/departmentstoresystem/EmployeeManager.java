@@ -62,4 +62,20 @@ public class EmployeeManager {
 
         System.out.println("Total employees: " + employees.size());
     }
+
+    // Sort employees and display the first 20
+    public void sortEmployees() {
+
+        employees = MergeSort.sort(employees);
+
+        System.out.println("\nFirst 20 Employees (A-Z)");
+        System.out.println("-------------------------");
+
+        int limit = Math.min(20, employees.size());
+
+        for (int i = 0; i < limit; i++) {
+            System.out.println((i + 1) + ". " + employees.get(i));
+        }
+    }
+
 }
