@@ -78,4 +78,38 @@ public class EmployeeManager {
         }
     }
 
+    // Search for an employee by name
+    public void searchEmployee(String name) {
+
+        // Check if the name is empty
+        name = name.trim();
+
+        if (name.isEmpty()) {
+            System.out.println("Please enter an employee name!");
+            return;
+        }
+
+        // Sort employees before searching
+        employees = MergeSort.sort(employees);
+
+        // Search using recursive Binary Search
+        int index = BinarySearch.search(
+                employees, name, 0, employees.size() - 1);
+
+        // Check if employee was found
+        if (index == -1) {
+
+            System.out.println("Employee not found!");
+
+        } else {
+
+            Employee employee = employees.get(index);
+
+            System.out.println("\nEmployee Found!");
+            System.out.println("Name: " + employee.getName());
+            System.out.println("Manager Type: " + employee.getManagerType());
+            System.out.println("Department: " + employee.getDepartment());
+        }
+    }
+
 }

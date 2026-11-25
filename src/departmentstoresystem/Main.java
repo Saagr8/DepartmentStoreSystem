@@ -57,9 +57,19 @@ while (running) {
                     manager.sortEmployees();
                     break;
 
-                case 2:
-                    System.out.println("SEARCH selected");
-                    break;
+             
+case 2:
+    System.out.println("SEARCH selected");
+
+    // Ask the user for employee name
+    System.out.print("Enter employee name: ");
+    String name = input.nextLine();
+
+    // Search for the employee
+    manager.searchEmployee(name);
+
+    break;
+
 
                 case 3:
                     System.out.println("ADD RECORDS selected");
