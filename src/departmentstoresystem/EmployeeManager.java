@@ -10,6 +10,8 @@ public class EmployeeManager {
 
     // List to store all employees
     private ArrayList<Employee> employees = new ArrayList<>();
+    // Store employees added by the user
+private ArrayList<Employee> newEmployees = new ArrayList<>();
 
     // Method to read employees from the file
     public void loadEmployees() {
@@ -109,6 +111,91 @@ public class EmployeeManager {
             System.out.println("Name: " + employee.getName());
             System.out.println("Manager Type: " + employee.getManagerType());
             System.out.println("Department: " + employee.getDepartment());
+        }
+    }
+
+    // Get available manager types
+    public ArrayList<String> getManagerTypes() {
+
+        ArrayList<String> types = new ArrayList<>();
+
+        for (Employee employee : employees) {
+
+            if (!types.contains(employee.getManagerType())) {
+                types.add(employee.getManagerType());
+            }
+        }
+
+        return types;
+    }
+
+    // Get existing departments
+    public ArrayList<String> getDepartments()
+    {
+        
+
+        ArrayList<String> departments = new ArrayList<>();
+
+        for (Employee employee : employees) {
+
+            if (!departments.contains(employee.getDepartment())) {
+                departments.add(employee.getDepartment());
+            }
+        }
+
+        return departments;
+    }
+
+    // Add a new employee
+    public boolean addEmployee(String name, String managerType,
+            String department) {
+
+        // Check employee name
+        if (name.trim().isEmpty()) {
+            return false;
+        }
+
+        // Check manager type
+        if (!getManagerTypes().contains(managerType)) {
+            return false;
+        }
+
+        // Check department
+        if (!getDepartments().contains(department)) {
+            return false;
+        }
+
+        // Create employee object
+        Employee employee = new Employee(
+                name.trim(), managerType, department);
+
+        // Add employee to our main list
+        employees.add(employee);
+
+        // Keep the list sorted
+        employees = MergeSort.sort(employees);
+
+        // Store the newly added employee
+        newEmployees.add(employee);
+
+        return true;
+    }
+
+    // Display employees added by the user
+    public void displayNewEmployees() {
+
+        System.out.println("\nNewly Added Employees");
+        System.out.println("-------------------------");
+
+        if (newEmployees.isEmpty()) {
+            System.out.println("No new employees added.");
+            return;
+        }
+
+        for (int i = 0; i < newEmployees.size(); i++) {
+
+            System.out.println((i + 1) + ". "
+                    + newEmployees.get(i));
         }
     }
 
