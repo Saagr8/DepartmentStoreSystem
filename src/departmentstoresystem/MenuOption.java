@@ -27,4 +27,18 @@ public enum MenuOption {
     public String getDescription() {
         return description;
     }
+    
+    // Find a menu option using its number
+    public static MenuOption fromNumber(int number) {
+
+        for (MenuOption option : MenuOption.values()) {
+
+            if (option.getNumber() == number) {
+                return option;
+            }
+        }
+
+        return null;
+    }
+
 }

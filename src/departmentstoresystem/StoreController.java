@@ -35,12 +35,24 @@ public class StoreController {
         // Check if the user entered a number
         if (input.hasNextInt()) {
 
-            int choice = input.nextInt();
-            input.nextLine();
+            
+int choice = input.nextInt();
+input.nextLine();
 
-            switch (choice) {
+// Convert the number to a MenuOption
+MenuOption selectedOption = MenuOption.fromNumber(choice);
 
-case 1:
+// Check for invalid menu choices
+if (selectedOption == null) {
+    System.out.println("Invalid option!");
+    continue;
+}
+
+// Use Enum to handle menu choices
+switch (selectedOption) {
+
+
+case SORT:
     System.out.println("SORT selected");
 
     ArrayList<Employee> sortedEmployees = manager.sortEmployees();
@@ -51,7 +63,7 @@ case 1:
 
              
 
-case 2:
+case SEARCH:
     System.out.println("SEARCH selected");
 
     // Ask for employee name
@@ -75,7 +87,7 @@ case 2:
 
 
            
-case 3: {
+case ADD_RECORDS: {
 
     System.out.println("ADD RECORDS selected");
 
@@ -167,7 +179,7 @@ if (added) {
 
                
 
-case 4:
+case BINARY_TREE:
 
     // Create binary tree
     EmployeeTree tree = manager.createEmployeeTree();
@@ -179,7 +191,7 @@ case 4:
 
 
 
-                case 5:
+                case EXIT:
                     System.out.println("Goodbye!");
                       running = false;
                       break;
