@@ -157,9 +157,24 @@ case 3: {
 }
 
 
-                case 4:
-                    System.out.println("BINARY TREE selected");
-                    break;
+               
+case 4:
+    System.out.println("BINARY TREE selected");
+
+    // Create binary tree from our employee list
+    EmployeeTree tree = manager.createEmployeeTree();
+
+    // Display employees level by level
+    tree.displayLevelOrder();
+
+    // Display total nodes and height
+    System.out.println("\nBinary Tree Information");
+    System.out.println("------------------------");
+    System.out.println("Total Nodes: " + tree.countNodes());
+    System.out.println("Tree Height: " + tree.getHeight());
+
+    break;
+
 
                 case 5:
                     System.out.println("Goodbye!");

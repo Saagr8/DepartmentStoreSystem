@@ -199,4 +199,17 @@ private ArrayList<Employee> newEmployees = new ArrayList<>();
         }
     }
 
+    // Create a binary tree using our employee list
+    public EmployeeTree createEmployeeTree() {
+
+        EmployeeTree tree = new EmployeeTree();
+
+        // Insert all employees into the tree
+        for (Employee employee : employees) {
+            tree.insert(employee);
+        }
+
+        return tree;
+    }
+
 }
