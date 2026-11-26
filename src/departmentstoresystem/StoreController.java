@@ -40,23 +40,38 @@ public class StoreController {
 
             switch (choice) {
 
-                case 1:
-                    System.out.println("SORT selected");
-                    manager.sortEmployees();
-                    break;
+case 1:
+    System.out.println("SORT selected");
+
+    ArrayList<Employee> sortedEmployees = manager.sortEmployees();
+
+    view.showSortedEmployees(sortedEmployees);
+
+    break;
 
              
+
 case 2:
     System.out.println("SEARCH selected");
 
-    // Ask the user for employee name
+    // Ask for employee name
     System.out.print("Enter employee name: ");
     String name = input.nextLine();
 
+    // Check if name is empty
+    if (name.trim().isEmpty()) {
+        System.out.println("Please enter an employee name!");
+        break;
+    }
+
     // Search for the employee
-    manager.searchEmployee(name);
+    Employee foundEmployee = manager.searchEmployee(name);
+
+    // Ask View to display the result
+    view.showSearchResult(foundEmployee);
 
     break;
+
 
 
            
@@ -134,34 +149,34 @@ case 3: {
     boolean added = manager.addEmployee(
             employeeName, selectedManager, selectedDepartment);
 
-    if (added) {
-        System.out.println("\nEmployee added successfully!");
-        manager.displayNewEmployees();
-    } else {
-        System.out.println("Could not add employee!");
-    }
+   
+if (added) {
+    System.out.println("\nEmployee added successfully!");
+
+    // Ask View to display new employees
+    view.showNewEmployees(manager.getNewEmployees());
+
+} else {
+    System.out.println("Could not add employee!");
+}
+
 
     break;
 }
 
 
                
-case 4:
-    System.out.println("BINARY TREE selected");
 
-    // Create binary tree from our employee list
+case 4:
+
+    // Create binary tree
     EmployeeTree tree = manager.createEmployeeTree();
 
-    // Display employees level by level
-    tree.displayLevelOrder();
-
-    // Display total nodes and height
-    System.out.println("\nBinary Tree Information");
-    System.out.println("------------------------");
-    System.out.println("Total Nodes: " + tree.countNodes());
-    System.out.println("Tree Height: " + tree.getHeight());
+    // Ask the View to display the tree
+    view.showBinaryTree(tree);
 
     break;
+
 
 
                 case 5:

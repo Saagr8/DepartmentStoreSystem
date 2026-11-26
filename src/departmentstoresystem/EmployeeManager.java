@@ -65,54 +65,43 @@ private ArrayList<Employee> newEmployees = new ArrayList<>();
         System.out.println("Total employees: " + employees.size());
     }
 
-    // Sort employees and display the first 20
-    public void sortEmployees() {
+    // Sort employees and return the sorted list
+    public ArrayList<Employee> sortEmployees() {
 
+        // Sort employees using Merge Sort
         employees = MergeSort.sort(employees);
 
-        System.out.println("\nFirst 20 Employees (A-Z)");
-        System.out.println("-------------------------");
-
-        int limit = Math.min(20, employees.size());
-
-        for (int i = 0; i < limit; i++) {
-            System.out.println((i + 1) + ". " + employees.get(i));
-        }
+        // Return the sorted employee list
+        return employees;
     }
-
+    
     // Search for an employee by name
-    public void searchEmployee(String name) {
+    public Employee searchEmployee(String name) {
 
-        // Check if the name is empty
+        // Remove extra spaces
         name = name.trim();
 
+        // Check if the name is empty
         if (name.isEmpty()) {
-            System.out.println("Please enter an employee name!");
-            return;
+            return null;
         }
 
         // Sort employees before searching
         employees = MergeSort.sort(employees);
 
-        // Search using recursive Binary Search
+        // Search using Binary Search
         int index = BinarySearch.search(
                 employees, name, 0, employees.size() - 1);
 
-        // Check if employee was found
+        // Employee not found
         if (index == -1) {
-
-            System.out.println("Employee not found!");
-
-        } else {
-
-            Employee employee = employees.get(index);
-
-            System.out.println("\nEmployee Found!");
-            System.out.println("Name: " + employee.getName());
-            System.out.println("Manager Type: " + employee.getManagerType());
-            System.out.println("Department: " + employee.getDepartment());
+            return null;
         }
+
+        // Return the employee we found
+        return employees.get(index);
     }
+
 
     // Get available manager types
     public ArrayList<String> getManagerTypes() {
@@ -181,23 +170,14 @@ private ArrayList<Employee> newEmployees = new ArrayList<>();
         return true;
     }
 
-    // Display employees added by the user
-    public void displayNewEmployees() {
 
-        System.out.println("\nNewly Added Employees");
-        System.out.println("-------------------------");
+    // Return the newly added employees
+    public ArrayList<Employee> getNewEmployees() {
 
-        if (newEmployees.isEmpty()) {
-            System.out.println("No new employees added.");
-            return;
-        }
-
-        for (int i = 0; i < newEmployees.size(); i++) {
-
-            System.out.println((i + 1) + ". "
-                    + newEmployees.get(i));
-        }
+        return new ArrayList<>(newEmployees);
     }
+
+  
 
     // Create a binary tree using our employee list
     public EmployeeTree createEmployeeTree() {
